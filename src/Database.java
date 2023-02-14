@@ -1,3 +1,4 @@
+package basic.atm;
 import java.sql.*;
 public class Database {
   private Connection connection;
