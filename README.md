@@ -1,4 +1,4 @@
 # ATM
 Java-project
-Adilet Arsen Aidana
+Adilet, Arsen, Aidana
 SE-2203
