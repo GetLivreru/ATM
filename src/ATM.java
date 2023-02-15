@@ -26,14 +26,19 @@ public class ATM {
                 
                 System.out.println("Enter first name:");
                 
-                String Name = scanner.next().trim();
+                String firstName = scanner.next().trim();
                 
-                Account account = new Account(Name);
+                System.out.println("Enter last name:");
+                
+                String lastName = scanner.next().trim();
+                
+                
+                Account account = new Account(firstName, lastName);
                 
                 account.register();
                 
                 break;
-        
+        }
         
         Scanner input = new Scanner(System.in);
         int balance = 1000; // starting balance
