@@ -20,6 +20,20 @@ public class ATM {
             }
         }
         
+        switch(option) {
+            case 1: //Creating a new account
+                System.out.println("\n\n=== CREATE NEW ACCOUNT ===\n");
+                
+                System.out.println("Enter first name:");
+                
+                String Name = scanner.next().trim();
+                
+                Account account = new Account(Name);
+                
+                account.register();
+                
+                break;
+        
         
         Scanner input = new Scanner(System.in);
         int balance = 1000; // starting balance
