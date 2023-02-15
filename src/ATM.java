@@ -38,6 +38,19 @@ public class ATM {
                 account.register();
                 
                 break;
+                
+            case 2: //Login to an existing account
+                System.out.println("\n\n==== SIGN IN ====\n");
+                
+                System.out.println("Enter your card number: ");
+                
+                String cardNumber = scanner.next();
+                
+                System.out.println("Enter your pincode: ");
+                
+                String pincode = scanner.next();
+                
+                Operation operation = new Operation(cardNumber, pincode);
         }
         
         Scanner input = new Scanner(System.in);
