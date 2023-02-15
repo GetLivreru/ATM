@@ -4,6 +4,21 @@ import java.util.Scanner;
 
 public class ATM {
     public static void main(String[] args) {
+        
+        //Displaying the main menu
+        while (option == 0) {
+            System.out.println("==== SELECT AN OPTION ====");
+            System.out.println("1. Create an account");
+            System.out.println("2. Sign in");
+            
+            while (option < 1 || option > 2) {
+                System.out.println("Type your choice: ");
+                
+                option = scanner.nextInt();
+            }
+        }
+        
+        
         Scanner input = new Scanner(System.in);
         int balance = 1000; // starting balance
         
