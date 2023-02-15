@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class ATM {
     public static void main(String[] args) {
         
+        public static boolean isLogin = false;
+        
         //Displaying the main menu
         while (option == 0) {
             System.out.println("==== SELECT AN OPTION ====");
