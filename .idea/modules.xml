@@ -5,4 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/ATMb.iml" filepath="$PROJECT_DIR$/ATMb.iml" />
     </modules>
   </component>
+  
+  <component name="ProjectSettings">
+    <option name="runConfigurationModule" value="ATMb" />
+    <option name="testScope" value="ALL" />
+  </component>
 </project>
