@@ -7,7 +7,7 @@ public class Database {
     public void connect() {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://host:port/database", "username", "password");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bank", "postgres", "qwerty123");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
