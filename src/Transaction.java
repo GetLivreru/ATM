@@ -23,5 +23,6 @@ public class Transaction {
     }
   public boolean isDeposit(){
   }
-  
+  public boolean isWithdrawal(){
+  }
 }
