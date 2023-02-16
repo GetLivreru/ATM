@@ -1,3 +1,4 @@
+package basic.atm;
 public class Operation {
     public void deposit(Account account, int amount) {
         account.setBalance(account.getBalance() + amount);
