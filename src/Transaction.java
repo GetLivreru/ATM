@@ -21,4 +21,7 @@ public class Transaction {
    public LocalDateTime getTransactionDateTime() {
         return transactionDateTime;
     }
+  public boolean isDeposit(){
+  }
+  
 }
