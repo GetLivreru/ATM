@@ -56,10 +56,7 @@ public class ATM {
         Scanner input = new Scanner(System.in);
         int balance = 1000; // starting balance
         
-        // login
-        System.out.println("Enter your PIN:");
-        int pin = input.nextInt();
-        
+
         // menu
         while (true) {
             System.out.println("Welcome to the ATM. What would you like to do?");
