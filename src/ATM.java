@@ -77,7 +77,7 @@ public class ATM {
             System.out.println("2. Withdraw money");
             System.out.println("3. Deposit money");
             System.out.println("4. Exit");
-            int choice = input.nextInt();
+            int amount = scanner.nextInt();
             
             switch (choice) {
                 case 1:
