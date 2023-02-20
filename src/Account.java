@@ -75,4 +75,12 @@ public class Account implements BankOperations {
     public String getCardNumber() {
         return null;
     }
+    public String getPincode() {
+        return null;
+    }
+    public void setBalance(double v) {
+    }
+
+    public void register() {
+    }
 }
