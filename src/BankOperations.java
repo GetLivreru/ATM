@@ -13,5 +13,5 @@ public interface BankOperations {
 
   // Method to transfer an amount of money from one account to another
   public void transfer(double amount, BankOperations destinationAccount);
-
+      void save();
 }
