@@ -47,7 +47,32 @@ public class Account implements BankOperations {
         this.balance -= amount;
     }
 
-    public Integer getBalance() {
+    @Override
+    public void deposit(double amount) {
+        
+    }
+    @Override
+    public void withdraw(double amount){
+        
+    }
+    public double getBalance() {
         return this.balance;
+    }
+    @Override
+    public void transfer(double amount, BankOperations destinationAccount) {
+
+    }
+    @Override
+    public void save() {
+
+    }
+    public String getFirstName() {
+        return null;
+    }
+    public String getLastName() {
+        return null;
+    }
+    public String getCardNumber() {
+        return null;
     }
 }
