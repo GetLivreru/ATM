@@ -10,6 +10,7 @@ public class ATM {
         Account account = null;
         
         //Displaying the main menu
+        int option = 0;
         while (option == 0) {
             System.out.println("==== SELECT AN OPTION ====");
             System.out.println("1. Create an account");
@@ -28,11 +29,11 @@ public class ATM {
                 
                 System.out.println("Enter first name:");
                 
-                String firstName = scanner.next().trim();
+                String firstName = scanner.next();
                 
                 System.out.println("Enter last name:");
                 
-                String lastName = scanner.next().trim();
+                String lastName = scanner.next();
                 
                 
                 Account account = new Account(firstName, lastName);
