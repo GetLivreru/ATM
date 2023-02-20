@@ -13,6 +13,12 @@ public class Operation {
     }
 
     public int checkBalance(Account account) {
-        return account.getBalance();
+        return (int) account.getBalance();
+    }
+    public boolean validateLogin() {
+        return false;
+    }
+    public Account getAccount() {
+        return null;
     }
 } 
