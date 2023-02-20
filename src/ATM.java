@@ -85,23 +85,24 @@ public class ATM {
                     break;
                 case 2:
                     System.out.println("Enter amount to withdraw:");
-                    int amount = input.nextInt();
+                    int amount = scanner.nextInt();
                     if (amount > balance) {
-                        System.out.println("Insufficient funds.");
-                    } else {
-                        balance -= amount;
-                        System.out.println("Withdrawn " + amount + ". Your new balance is " + balance);
-                    }
-                    break;
+                            System.out.println("Insufficient funds.");
+                        } else {
+                            account.withdraw(amount);
+                            System.out.println("Withdrawn " + amount + ". Your new balance is " + account.getBalance());
+                        }
+                        break;
                 case 3:
                     System.out.println("Enter amount to deposit:");
-                    int deposit = input.nextInt();
-                    balance += deposit;
-                    System.out.println("Deposited " + deposit + ". Your new balance is " + balance);
-                    break;
+                    int deposit = scanner.nextInt();
+                    account.deposit(deposit);
+                        System.out.println("Deposited " + deposit + ". Your new balance is " + account.getBalance());
+                        break;
                 case 4:
-                    System.out.println("Thank you for using the ATM.");
-                    System.exit(0);
+                    account.save(); // Save the account information to the file
+                        System.out.println("Thank you for using the ATM.");
+                        System.exit(0);
                 default:
                     System.out.println("Invalid choice.");
             }
