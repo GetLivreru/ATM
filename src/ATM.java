@@ -54,10 +54,20 @@ public class ATM {
                 String pincode = scanner.next();
                 
                 Operation operation = new Operation(cardNumber, pincode);
-        }
         
-        Scanner input = new Scanner(System.in);
-        int balance = 1000; // starting balance
+        // Check if the login information is correct
+                if (operation.validateLogin()) {
+                    isLogin = true;
+                    account = operation.getAccount();
+                } else {
+                    System.out.println("Invalid login information. Please try again.");
+                }
+
+                break;
+        }
+
+        if (isLogin) {
+            int balance = (int) account.getBalance();
         
 
         // menu
