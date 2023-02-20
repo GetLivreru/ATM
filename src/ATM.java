@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class ATM {
     public static void main(String[] args) {
         
-        public static boolean isLogin = false;
+        Scanner scanner = new Scanner(System.in);
+        boolean isLogin = false;
+        Account account = null;
         
         //Displaying the main menu
         while (option == 0) {
