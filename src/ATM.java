@@ -87,6 +87,61 @@ public class ATM {
                         }
                         
                         Integer balance = 0;
+                        //Data entry depending on the selected option
+                        switch(option_user) {
+                            case 1:
+                                System.out.println("\n\n==== SHOW BALANCE ====\n");
+                                
+                                balance = operation.showBalance(cardNumber);
+                                
+                                System.out.println(balance);
+                                
+                                break;
+                            case 2:
+                                System.out.println("\n\n==== MAKE DEPOSIT ====\n");
+                                
+                                Integer amount = 0;
+                                
+                                while (amount <= 0) {
+                                    System.out.println("Type amount: ");
+                                    
+                                    amount = scanner.nextInt();
+                                }
+                                
+                                operation.deposit(amount, cardNumber);
+                                
+                                balance = operation.showBalance(cardNumber);
+                                
+                                System.out.println("\nCurrent balance is " + balance);
+                                
+                                break;
+                                
+                            case 3:
+                                System.out.println("\n\n==== SEND MONEY TO OTHER CARD ====\n");
+                                
+                                System.out.println("Enter number of other client: ");
+                                
+                                String number_other = scanner.next();
+                                
+                                Integer amountOther = 0;
+                                
+                                while (amountOther <= 0) {
+                                    System.out.println("Enter amount for other client: ");
+                                    
+                                    amountOther = scanner.nextInt();
+                                }
+                                
+                                operation.sendMoneyToOther(amountOther, number_other, cardNumber);
+                                
+                                System.out.println("\nYou've sent " + amountOther + " to " + number_other);
+                                
+                                break;
+                            
+                            default:
+                                break;
+                        }
+                        
+                    }
         
         // Check if the login information is correct
                 if (operation.validateLogin()) {
