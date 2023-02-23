@@ -34,3 +34,6 @@ public class Operation {
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        return this.balance;
+    }
