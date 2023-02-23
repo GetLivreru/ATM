@@ -43,7 +43,6 @@ public class BasicAtm {
                 
                 String lastName = scanner.next().trim();
                 
-                
                 Account account = new Account(firstName, lastName);
                 
                 account.register();
@@ -78,9 +77,7 @@ public class BasicAtm {
                         isLogin = true;
                         
                         System.out.println("\n\n==== LOGIN SUCCESS ====\n");
-                        
                         System.out.println("--- Enter an option ---");
-                        
                         System.out.println("1. Balance");
                         System.out.println("2. Deposit");
                         System.out.println("3. Send to other person");
@@ -159,7 +156,6 @@ public class BasicAtm {
                 
             default:
                break;
-            
             
         }
     }
