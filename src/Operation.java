@@ -1,24 +1,16 @@
 package basic.atm;
+
+import java.sql.*;
+
+
 public class Operation {
-    public void deposit(Account account, int amount) {
-        account.setBalance(account.getBalance() + amount);
-    }
+    private String cardNumber;
 
-    public void withdraw(Account account, int amount) {
-        if (account.getBalance() >= amount) {
-            account.setBalance(account.getBalance() - amount);
-        } else {
-            throw new IllegalArgumentException("Insufficient funds");
-        }
-    }
+    private String pincode;
 
-    public int checkBalance(Account account) {
-        return (int) account.getBalance();
+    private Integer balance;
+
+    Operation(String cardNumber, String pincode) {
+        this.cardNumber = cardNumber;
+        this.pincode = pincode;
     }
-    public boolean validateLogin() {
-        return false;
-    }
-    public Account getAccount() {
-        return null;
-    }
-} 
