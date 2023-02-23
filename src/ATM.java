@@ -79,6 +79,14 @@ public class ATM {
                        System.out.println("3. Send to other person");
                         
                        Integer option_user = 0;
+                       
+                       while (option_user < 1 || option_user > 3) {
+                            System.out.println("\nType your choice: ");
+                            
+                            option_user = scanner.nextInt();
+                        }
+                        
+                        Integer balance = 0;
         
         // Check if the login information is correct
                 if (operation.validateLogin()) {
