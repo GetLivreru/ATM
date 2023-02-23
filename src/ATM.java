@@ -1,16 +1,23 @@
 package basic.atm;
 
 import java.util.Scanner;
+import java.sql.*;
 
-public class ATM {
+
+public class BasicAtm {
+    
+    public static boolean isLogin = false;
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
+        // TODO code application logic here
+        Integer option = 0;
         
         Scanner scanner = new Scanner(System.in);
-        boolean isLogin = false;
-        Account account = null;
         
         //Displaying the main menu
-        int option = 0;
         while (option == 0) {
             System.out.println("==== SELECT AN OPTION ====");
             System.out.println("1. Create an account");
@@ -23,17 +30,18 @@ public class ATM {
             }
         }
         
+        //Data entry depending on the selected option
         switch(option) {
             case 1: //Creating a new account
                 System.out.println("\n\n=== CREATE NEW ACCOUNT ===\n");
                 
                 System.out.println("Enter first name:");
                 
-                String firstName = scanner.next();
+                String firstName = scanner.next().trim();
                 
                 System.out.println("Enter last name:");
                 
-                String lastName = scanner.next();
+                String lastName = scanner.next().trim();
                 
                 
                 Account account = new Account(firstName, lastName);
@@ -41,7 +49,7 @@ public class ATM {
                 account.register();
                 
                 break;
-                
+            
             case 2: //Login to an existing account
                 System.out.println("\n\n==== SIGN IN ====\n");
                 
@@ -56,37 +64,37 @@ public class ATM {
                 Operation operation = new Operation(cardNumber, pincode);
                 
                 //Checking that the user exists
-                
                 try {
-                   Connection c = Database.connection();
+                    Connection c = Database.connection();
                     
-                   Statement stmt4 = c.createStatement();
+                    Statement stmt4 = c.createStatement();
                     
-                   String sql4 = "SELECT * FROM card WHERE card_number = '" + cardNumber + "' AND pincode = '" + pincode + "'";
+                    String sql4 = "SELECT * FROM card WHERE card_number = '" + cardNumber + "' AND pincode = '" + pincode + "'";
                     
-                   ResultSet rs4 = stmt4.executeQuery(sql4);
+                    ResultSet rs4 = stmt4.executeQuery(sql4);
                     
-                   //Display the menu of the user who is logged in
-                   if (rs4.next()) {
-                       isLogin = true;
+                    //Display the menu of the user who is logged in
+                    if (rs4.next()) {
+                        isLogin = true;
                         
-                       System.out.println("\n\n==== LOGIN SUCCESS ====\n");
+                        System.out.println("\n\n==== LOGIN SUCCESS ====\n");
                         
-                       System.out.println("--- Enter an option ---");
+                        System.out.println("--- Enter an option ---");
                         
-                       System.out.println("1. Balance");
-                       System.out.println("2. Deposit");
-                       System.out.println("3. Send to other person");
+                        System.out.println("1. Balance");
+                        System.out.println("2. Deposit");
+                        System.out.println("3. Send to other person");
                         
-                       Integer option_user = 0;
-                       
-                       while (option_user < 1 || option_user > 3) {
+                        Integer option_user = 0;
+                        
+                        while (option_user < 1 || option_user > 3) {
                             System.out.println("\nType your choice: ");
                             
                             option_user = scanner.nextInt();
                         }
                         
                         Integer balance = 0;
+                        
                         //Data entry depending on the selected option
                         switch(option_user) {
                             case 1:
@@ -141,60 +149,19 @@ public class ATM {
                                 break;
                         }
                         
+                    } else {
+                        System.out.println("\nLogin fail");
                     }
-        
-        // Check if the login information is correct
-                if (operation.validateLogin()) {
-                    isLogin = true;
-                    account = operation.getAccount();
-                } else {
-                    System.out.println("Invalid login information. Please try again.");
+                } catch (Exception e) {
+                    
                 }
-
                 break;
-        }
-
-        if (isLogin) {
-            int balance = (int) account.getBalance();
-        
-
-        // menu
-        while (true) {
-            System.out.println("Welcome to the ATM. What would you like to do?");
-            System.out.println("1. Check balance");
-            System.out.println("2. Withdraw money");
-            System.out.println("3. Deposit money");
-            System.out.println("4. Exit");
-            int amount = scanner.nextInt();
+                
+            default:
+               break;
             
-            switch (choice) {
-                case 1:
-                    System.out.println("Your balance is: " + balance);
-                    break;
-                case 2:
-                    System.out.println("Enter amount to withdraw:");
-                    int amount = scanner.nextInt();
-                    if (amount > balance) {
-                            System.out.println("Insufficient funds.");
-                        } else {
-                            account.withdraw(amount);
-                            System.out.println("Withdrawn " + amount + ". Your new balance is " + account.getBalance());
-                        }
-                        break;
-                case 3:
-                    System.out.println("Enter amount to deposit:");
-                    int deposit = scanner.nextInt();
-                    account.deposit(deposit);
-                        System.out.println("Deposited " + deposit + ". Your new balance is " + account.getBalance());
-                        break;
-                case 4:
-                    account.save(); // Save the account information to the file
-                        System.out.println("Thank you for using the ATM.");
-                        System.exit(0);
-                default:
-                    System.out.println("Invalid choice.");
-            }
+            
         }
     }
+    
 }
-
