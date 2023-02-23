@@ -29,7 +29,6 @@ public class Account {
             
             stmt.executeUpdate(sql);
             
-            
             Statement stmt2 = c.createStatement();
             String sql2 = "SELECT LAST_INSERT_ID()";
             ResultSet rs2 = stmt.executeQuery(sql2);
@@ -50,21 +49,17 @@ public class Account {
             
             stmt3.executeUpdate(sql3);
             
-            
             Statement stmt4 = c.createStatement();
             
             String sql4 = "INSERT INTO balance VALUES ('" + cardNumber + "', '0')";
             
             stmt4.executeUpdate(sql4);
             
-            
             c.close();
             
             
             System.out.println("Account created successfully");
-            
             System.out.println("Card number: " + cardNumber);
-            
             System.out.println("Pincode: " + code);
             
             
@@ -75,7 +70,7 @@ public class Account {
         
         return false;
     }
-    
+ 
     /*
     Card number generation
     */
@@ -112,7 +107,5 @@ public class Account {
         }
         
         return new String(cardNumber);
-    }
-        
-        
+    }    
 }
