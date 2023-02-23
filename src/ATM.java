@@ -14,7 +14,7 @@ public class ATM {
         while (option == 0) {
             System.out.println("==== SELECT AN OPTION ====");
             System.out.println("1. Create an account");
-            System.out.println("2. Sign in");
+            System.out.println("2. Sign in\n");
             
             while (option < 1 || option > 2) {
                 System.out.println("Type your choice: ");
@@ -54,6 +54,31 @@ public class ATM {
                 String pincode = scanner.next();
                 
                 Operation operation = new Operation(cardNumber, pincode);
+                
+                //Checking that the user exists
+                
+                try {
+                   Connection c = Database.connection();
+                    
+                   Statement stmt4 = c.createStatement();
+                    
+                   String sql4 = "SELECT * FROM card WHERE card_number = '" + cardNumber + "' AND pincode = '" + pincode + "'";
+                    
+                   ResultSet rs4 = stmt4.executeQuery(sql4);
+                    
+                   //Display the menu of the user who is logged in
+                   if (rs4.next()) {
+                       isLogin = true;
+                        
+                       System.out.println("\n\n==== LOGIN SUCCESS ====\n");
+                        
+                       System.out.println("--- Enter an option ---");
+                        
+                       System.out.println("1. Balance");
+                       System.out.println("2. Deposit");
+                       System.out.println("3. Send to other person");
+                        
+                       Integer option_user = 0;
         
         // Check if the login information is correct
                 if (operation.validateLogin()) {
