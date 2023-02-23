@@ -67,7 +67,6 @@ public class Operation {
 
             stmt8.executeUpdate(sql8);
 
-
             Statement stmt9 = c.createStatement();
 
             String sql9 = "UPDATE balance SET balance = balance - " + amountOther + " WHERE card_number = '" + cardNumber + "'";
