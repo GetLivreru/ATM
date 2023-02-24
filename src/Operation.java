@@ -4,26 +4,26 @@ import java.sql.*;
 
 
 public class Operation {
-    private String cardNumber;
+    private final String card_number;
 
-    private String pincode;
+    private final String pincode;
 
-    private Integer balance;
+    private int balance;
 
-    Operation(String cardNumber, String pincode) {
-        this.cardNumber = cardNumber;
+    Operation(String card_number, String pincode) {
+        this.card_number = card_number;
         this.pincode = pincode;
     }
     /*
     Displaying the balance of the bank card
     */
-    public Integer showBalance(String cardNumber) {
+    public Integer showBalance(String card_number) {
         try {
             Connection c = Database.connection();
 
             Statement stmt5 = c.createStatement();
 
-            String sql5 = "SELECT * FROM balance WHERE card_number = " + cardNumber;
+            String sql5 = "SELECT * FROM atm.balance WHERE card_number = " + card_number;
 
             ResultSet rs5 = stmt5.executeQuery(sql5);
 
@@ -32,48 +32,51 @@ public class Operation {
             }
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println();
         }
 
         return this.balance;
     }
+
+
     /*
     Put money on a bank card
     */
-    public void deposit(Integer amount, String cardNumber) {
+    public void deposit(Integer amount, String card_number) {
         try {
             Connection c = Database.connection();
 
             Statement stmt6 = c.createStatement();
 
-            String sql6 = "UPDATE balance SET balance = balance + '" + amount + "' WHERE card_number = " + cardNumber;
+            String sql6 = "UPDATE atm.balance SET balance = balance + '" + amount + "' WHERE card_number = " + card_number;
 
             stmt6.executeUpdate(sql6);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println();
         }
     }
 
     /*
     Transfer money to another user
     */
-    public void sendMoneyToOther(Integer amountOther, String numberOther, String cardNumber) {
-        try {
-            Connection c = Database.connection();
+    public void sendMoneyToOther(Integer amountOther, String numberOther, String card_number) {
+        try (Connection c = Database.connection();
+             PreparedStatement pstmt1 = c.prepareStatement("UPDATE atm.balance SET balance = balance + ? WHERE card_number = ?");
+             PreparedStatement pstmt2 = c.prepareStatement("UPDATE atm.balance SET balance = balance - ? WHERE card_number = ?")) {
+            pstmt1.setInt(1, amountOther);
+            pstmt1.setString(2, numberOther);
+            pstmt1.executeUpdate();
 
-            Statement stmt8 = c.createStatement();
-
-            String sql8 = "UPDATE balance SET balance = balance + " + amountOther + " WHERE card_number = '" + numberOther + "'";
-
-            stmt8.executeUpdate(sql8);
-
-            Statement stmt9 = c.createStatement();
-
-            String sql9 = "UPDATE balance SET balance = balance - " + amountOther + " WHERE card_number = '" + cardNumber + "'";
-
-            stmt9.executeUpdate(sql9);
+            pstmt2.setInt(1, amountOther);
+            pstmt2.setString(2, card_number);
+            pstmt2.executeUpdate();
+        } catch (SQLException e) {
+            // handle exception
+            e.printStackTrace();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println();
         }
     }
+
+
 }
